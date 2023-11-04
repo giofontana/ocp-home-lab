@@ -1,9 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: advanced-cluster-security
+  name: local-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
   labels:
     gitops.ownedBy: default
@@ -13,8 +13,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: gitops/manifests/operators/advanced-cluster-security-operator/aggregate/minimal
-    repoURL: https://github.com/sa-ne/gitops-tekton-demo.git
+    path: local-storage/operator/overlays/stable
+    repoURL: https://github.com/redhat-cop/gitops-catalog.git
     targetRevision: main
   syncPolicy:
     automated:
